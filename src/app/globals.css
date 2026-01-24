@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@import './theme.css';
+
+:root {
+  --radius: 0.625rem;
+  --background-primary: #0D0C0A;
+  --background-secondary: #FFFCF5;
+  --text-primary: #FFE0B2;
+  --text-secondary: #535766;
+  --text-tertiary: #FCEBC8;
+  --text-quaternary: #2E8B57;
+  --text-quinary: #D50000;
+  --text-senary: #121212;
+  --text-septenary: #FF6200;
+  --accent: #272727;
+  --accent-secondary: #FBFBFB;
+  --accent-tertiary: #DADADA;
+  --accent-quaternary: #C48C5C;
+  --card-primary: #F6D8B4;
+  --card-secondary: #F8F8F8;
+  --white: #FFFFFF;
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--accent);
+  --sidebar-accent: var(--accent-secondary);
+  --sidebar-accent-foreground: var(--accent);
+  --sidebar-border: var(--accent-tertiary);
+  --sidebar-ring: var(--accent);
+}
+
+.dark {
+  --background-primary: #0D0C0A;
+  --background-secondary: #FFFCF5;
+  --text-primary: #FFE0B2;
+  --text-secondary: #535766;
+  --text-tertiary: #FCEBC8;
+  --text-quaternary: #2E8B57;
+  --text-quinary: #D50000;
+  --text-senary: #121212;
+  --text-septenary: #FF6200;
+  --accent: #272727;
+  --accent-secondary: #FBFBFB;
+  --accent-tertiary: #DADADA;
+  --accent-quaternary: #C48C5C;
+  --card-primary: #F6D8B4;
+  --card-secondary: #F8F8F8;
+  --white: #FFFFFF;
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--accent);
+  --sidebar-accent: var(--accent-secondary);
+  --sidebar-accent-foreground: var(--accent);
+  --sidebar-border: var(--accent-tertiary);
+  --sidebar-ring: var(--accent);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* figma colors of  */
+  --color-background-primary: var(--background-primary);
+  --color-background-secondary: var(--background-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-quaternary: var(--text-quaternary);
+  --color-text-quinary: var(--text-quinary);
+  --color-text-senary: var(--text-senary);
+  --color-text-septenary: var(--text-septenary);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-accent-quaternary: var(--accent-quaternary);
+  --color-card-primary: var(--card-primary);
+  --color-card-secondary: var(--card-secondary);
+  --color-white: var(--white);
+}
+
+@layer base {
+  * {
+    @apply border-text-secondary outline-text-secondary/50
+  }
+
+  body {
+    font-family: var(--font-open-sans), sans-serif;
+  }
+
+  /* Hide scrollbars for all elements */
+  * {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+  }
+
+  /* Hide scrollbars for WebKit browsers (Chrome, Safari, Edge) */
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* View Transition Wave Effect */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  /* Ensure the outgoing view (old theme) is beneath */
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  /* Ensure the incoming view (new theme) is always on top */
+  z-index: 1;
+}
+
+@keyframes reveal {
+  from {
+    /* Use CSS variables for the origin, defaulting to center if not set */
+    clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+    opacity: 0.7;
+  }
+
+  to {
+    /* Use CSS variables for the origin, defaulting to center if not set */
+    clip-path: circle(150% at var(--x, 50%) var(--y, 50%));
+    opacity: 1;
+  }
+}
+
+::view-transition-new(root) {
+  /* Apply the reveal animation */
+  animation: reveal 0.4s ease-in-out forwards;
+}
+
+.pac-container {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
