@@ -4,19 +4,19 @@ export interface Items {
   menuTitle?: string;
   title: string;
   url: string;
-  icon?: string
+  icon?: string;
 }
 
 export interface HeaderItem {
   title: string;
   url: string;
-  subchildTitle?: string[]
-  subchild?: Items[]
+  subchildTitle?: string[];
+  subchild?: Items[];
 }
 
 export interface FooterItem {
-  title: string,
-  subchild: Items[]
+  title: string;
+  subchild: Items[];
 }
 
 export interface NavItem {

@@ -90,9 +90,7 @@ const IconUpload: React.FC<IconUploadProps> = ({
         )}
       </label>
       <p className='text-sm text-gray-500'>
-        {preview
-          ? 'Icon ready'
-          : 'Click to upload an icon (PNG, JPG, SVG)'}
+        {preview ? 'Icon ready' : 'Click to upload an icon (PNG, JPG, SVG)'}
       </p>
     </div>
   );

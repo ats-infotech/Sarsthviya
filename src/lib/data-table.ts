@@ -6,7 +6,6 @@ import type {
 } from '@/types/data-table';
 import type { Column } from '@tanstack/react-table';
 
-
 export function getCommonPinningStyles<TData>({
   column,
   withBorder = false

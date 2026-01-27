@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -6,22 +6,23 @@
 
 :root {
   --radius: 0.625rem;
-  --background-primary: #0D0C0A;
-  --background-secondary: #FFFCF5;
-  --text-primary: #FFE0B2;
+  --background-primary: #0d0c0a;
+  --background-secondary: #fffcf5;
+  --text-primary: #ffe0b2;
   --text-secondary: #535766;
-  --text-tertiary: #FCEBC8;
-  --text-quaternary: #2E8B57;
-  --text-quinary: #D50000;
+  --text-tertiary: #fcebc8;
+  --text-quaternary: #2e8b57;
+  --text-quinary: #d50000;
   --text-senary: #121212;
-  --text-septenary: #FF6200;
+  --text-septenary: #ff6200;
   --accent: #272727;
-  --accent-secondary: #FBFBFB;
-  --accent-tertiary: #DADADA;
-  --accent-quaternary: #C48C5C;
-  --card-primary: #F6D8B4;
-  --card-secondary: #F8F8F8;
-  --white: #FFFFFF;
+  --accent-secondary: #fbfbfb;
+  --accent-tertiary: #dadada;
+  --accent-quaternary: #c48c5c;
+  --card-primary: #f6d8b4;
+  --card-secondary: #f8f8f8;
+  --white: #ffffff;
+  --black: #000000;
   --sidebar: var(--white);
   --sidebar-foreground: var(--accent);
   --sidebar-accent: var(--accent-secondary);
@@ -31,22 +32,23 @@
 }
 
 .dark {
-  --background-primary: #0D0C0A;
-  --background-secondary: #FFFCF5;
-  --text-primary: #FFE0B2;
+  --background-primary: #0d0c0a;
+  --background-secondary: #fffcf5;
+  --text-primary: #ffe0b2;
   --text-secondary: #535766;
-  --text-tertiary: #FCEBC8;
-  --text-quaternary: #2E8B57;
-  --text-quinary: #D50000;
+  --text-tertiary: #fcebc8;
+  --text-quaternary: #2e8b57;
+  --text-quinary: #d50000;
   --text-senary: #121212;
-  --text-septenary: #FF6200;
+  --text-septenary: #ff6200;
   --accent: #272727;
-  --accent-secondary: #FBFBFB;
-  --accent-tertiary: #DADADA;
-  --accent-quaternary: #C48C5C;
-  --card-primary: #F6D8B4;
-  --card-secondary: #F8F8F8;
-  --white: #FFFFFF;
+  --accent-secondary: #fbfbfb;
+  --accent-tertiary: #dadada;
+  --accent-quaternary: #c48c5c;
+  --card-primary: #f6d8b4;
+  --card-secondary: #f8f8f8;
+  --white: #ffffff;
+  --black: #000000;
   --sidebar: var(--white);
   --sidebar-foreground: var(--accent);
   --sidebar-accent: var(--accent-secondary);
@@ -78,11 +80,12 @@
   --color-card-primary: var(--card-primary);
   --color-card-secondary: var(--card-secondary);
   --color-white: var(--white);
+  --color-black: var(--black);
 }
 
 @layer base {
   * {
-    @apply border-text-secondary outline-text-secondary/50
+    @apply border-text-secondary outline-text-secondary/50;
   }
 
   body {

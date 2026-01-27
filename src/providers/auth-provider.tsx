@@ -8,7 +8,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useState,
+  useState
 } from 'react';
 
 type AuthContextType = {
@@ -27,9 +27,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   // fake user if token exists
-  const user = token
-    ? { email: 'admin@gmail.com', role: 'admin' }
-    : null;
+  const user = token ? { email: 'admin@gmail.com', role: 'admin' } : null;
 
   useEffect(() => {
     if (!token && pathname !== '/login') {
@@ -45,8 +43,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <Loader2 className="animate-spin" />
+      <div className='flex h-screen items-center justify-center'>
+        <Loader2 className='animate-spin' />
       </div>
     );
   }
@@ -57,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user,
         isLoading: false,
         isError: false,
-        logout,
+        logout
       }}
     >
       {children}

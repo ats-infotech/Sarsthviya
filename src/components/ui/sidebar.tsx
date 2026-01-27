@@ -164,34 +164,25 @@ function Sidebar({
   collapsible?: 'offcanvas' | 'icon' | 'none';
   permanent?: boolean;
 }) {
-  const { isMobile } = useSidebar();
+  const { isMobile, open, openMobile, setOpen, setOpenMobile } = useSidebar();
 
-  // 🔒 PERMANENT SIDEBAR (no mobile sheet, no collapse)
-  if (permanent) {
-    return (
-      <div
-        data-slot="sidebar"
-        className={cn(
-          'bg-sidebar text-sidebar-foreground hidden md:flex h-svh w-(--sidebar-width) flex-col',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-
-  // 📱 MOBILE SIDEBAR (offcanvas)
-  if (isMobile) {
-    const { openMobile, setOpenMobile } = useSidebar();
+  // Always use Sheet for overlay behavior (both mobile and desktop)
+  if (!permanent) {
+    // Determine which state to use based on screen size
+    const sheetOpen = isMobile ? openMobile : open;
+    const onOpenChange = isMobile ? setOpenMobile : setOpen;
 
     return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+      <Sheet open={sheetOpen} onOpenChange={onOpenChange}>
         <SheetContent
           side={side}
-          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0"
+          className={cn(
+            'bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0',
+            className
+          )}
+          {...props}
         >
+          <SheetTitle className='hidden'>Menu</SheetTitle>
           {children}
         </SheetContent>
       </Sheet>
@@ -201,9 +192,10 @@ function Sidebar({
   // 💻 DEFAULT DESKTOP (collapsible)
   return (
     <div
-      data-slot="sidebar"
+      data-slot='sidebar'
       className={cn(
-        'bg-sidebar text-sidebar-foreground hidden md:flex h-svh w-(--sidebar-width) flex-col',
+        'bg-sidebar text-sidebar-foreground hidden h-svh flex-col transition-all duration-200 md:flex',
+        open ? 'w-(--sidebar-width)' : 'w-0 overflow-hidden',
         className
       )}
       {...props}
@@ -212,7 +204,6 @@ function Sidebar({
     </div>
   );
 }
-
 
 function SidebarTrigger({
   className,

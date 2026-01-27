@@ -1,7 +1,7 @@
 import { createParser } from 'nuqs/server';
 import { z } from 'zod';
 
-``
+``;
 import type {
   ExtendedColumnFilter,
   ExtendedColumnSort

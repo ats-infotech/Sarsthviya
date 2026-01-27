@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -67,7 +67,7 @@ type FormInputProps<T extends FieldValues> = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   isSearch?: boolean;
-  isSent?: boolean
+  isSent?: boolean;
 };
 
 export function FormInput<T extends FieldValues>({
@@ -137,7 +137,7 @@ export function FormInput<T extends FieldValues>({
                 <Button
                   type='button'
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className='absolute right-2 text-xs text-accent font-semibold bg-text-primary w-23.5 h-9.5'
+                  className='text-accent bg-text-primary absolute right-2 h-9.5 w-23.5 text-xs font-semibold'
                   tabIndex={-1}
                 >
                   <Icon icon={IconsString?.sent} /> Sent
@@ -146,7 +146,7 @@ export function FormInput<T extends FieldValues>({
                 <Button
                   type='button'
                   variant='ghost'
-                  className='absolute left-0 text-text-tertiary hover:bg-transparent!'
+                  className='text-text-tertiary absolute left-0 hover:bg-transparent!'
                   tabIndex={-1}
                   onClick={() => inputRef.current?.focus()}
                 >
@@ -317,9 +317,9 @@ export function FormDate<T extends FieldValues>({
                   <CalendarIcon className='mr-2 h-4 w-4' />
                   {field.value
                     ? format(
-                      new Date(field.value),
-                      getDisplayDateFormat(dateFormat)
-                    )
+                        new Date(field.value),
+                        getDisplayDateFormat(dateFormat)
+                      )
                     : placeholder}
                 </Button>
               </PopoverTrigger>
@@ -581,9 +581,9 @@ export function FormMultiSelect<T extends FieldValues>({
                   placeholder={
                     selectedValues.length > 0
                       ? options
-                        .filter((opt) => selectedValues.includes(opt.value))
-                        .map((opt) => opt.label)
-                        .join(', ')
+                          .filter((opt) => selectedValues.includes(opt.value))
+                          .map((opt) => opt.label)
+                          .join(', ')
                       : placeholder
                   }
                 />
@@ -719,9 +719,7 @@ export function FormRadioGroup<T extends FieldValues>({
             </FormLabel>
           )}
           {description && (
-            <span className='text-tiny -mt-2.5 font-normal'>
-              {description}
-            </span>
+            <span className='text-tiny -mt-2.5 font-normal'>{description}</span>
           )}
           <FormControl>
             <RadioGroup
@@ -958,10 +956,10 @@ export function FormAsyncPaginateSelect<T extends FieldValues>({
                     },
                     ':after': state.isSelected
                       ? {
-                        content: '"✓"',
-                        marginLeft: 'auto',
-                        color: '#667085'
-                      }
+                          content: '"✓"',
+                          marginLeft: 'auto',
+                          color: '#667085'
+                        }
                       : undefined
                   }),
                   singleValue: (base: any) => ({
@@ -1129,7 +1127,7 @@ export function FormTime<T extends FieldValues>({
   // Generate the list of time options based on props
   const timeOptions = useMemo(() => {
     const options = [];
-    let currentTime = parse(minTime, 'HH:mm', new Date());
+    const currentTime = parse(minTime, 'HH:mm', new Date());
     const endTime = parse(maxTime, 'HH:mm', new Date());
 
     while (currentTime <= endTime) {

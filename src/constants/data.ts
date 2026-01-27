@@ -1,5 +1,4 @@
-import { NavItem } from "@/types";
-
+import { NavItem } from '@/types';
 
 //Info: The following data is used for the sidebar navigation and Cmd K bar.
 export const navItems: NavItem[] = [
@@ -11,5 +10,3 @@ export const navItems: NavItem[] = [
     items: []
   }
 ];
-
-

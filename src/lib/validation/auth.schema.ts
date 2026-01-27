@@ -1,4 +1,4 @@
-import z from "zod";
+import z from 'zod';
 
 export const FormLoginSchema = z.object({
   email: z
@@ -8,6 +8,6 @@ export const FormLoginSchema = z.object({
 
   password: z
     .string()
-    .min(1, "Password is required")
+    .min(1, 'Password is required')
     .min(6, 'Password must be at least 6 characters long')
 });

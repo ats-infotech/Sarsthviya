@@ -127,7 +127,7 @@ export default function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              onClick={() => { }}
+              onClick={() => {}}
               tooltip='Logout'
               className='cursor-pointer'
             >

@@ -1,5 +1,4 @@
 export type TLoginFormValues = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
-

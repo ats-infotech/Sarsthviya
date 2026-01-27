@@ -130,9 +130,18 @@ interface ChartTooltipContentProps extends React.ComponentProps<'div'> {
   hideLabel?: boolean;
   hideIndicator?: boolean;
   label?: string | number;
-  labelFormatter?: (label: any, payload: TooltipPayloadItem[]) => React.ReactNode;
+  labelFormatter?: (
+    label: any,
+    payload: TooltipPayloadItem[]
+  ) => React.ReactNode;
   labelClassName?: string;
-  formatter?: (value: any, name: string, item: TooltipPayloadItem, index: number, payload: any) => React.ReactNode;
+  formatter?: (
+    value: any,
+    name: string,
+    item: TooltipPayloadItem,
+    index: number,
+    payload: any
+  ) => React.ReactNode;
   color?: string;
   nameKey?: string;
   labelKey?: string;
@@ -359,9 +368,7 @@ function getPayloadConfigFromPayload(
     configLabelKey = payloadPayload[key];
   }
 
-  return configLabelKey in config
-    ? config[configLabelKey]
-    : config[key];
+  return configLabelKey in config ? config[configLabelKey] : config[key];
 }
 
 export {

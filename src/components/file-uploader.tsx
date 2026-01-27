@@ -1,4 +1,3 @@
-
 import { cn } from '@/lib/utils';
 import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
@@ -23,11 +22,15 @@ export function FileUploadField({
 }: FileUploadFieldProps) {
   const [fileName, setFileName] = useState(propFileName || '');
   const [fileUrl, setFileUrl] = useState<string | undefined>(undefined);
-  const [fileType, setFileType] = useState<'image' | 'pdf' | 'txt' | 'xlsx' | ''>('');
+  const [fileType, setFileType] = useState<
+    'image' | 'pdf' | 'txt' | 'xlsx' | ''
+  >('');
   const [showPreview, setShowPreview] = useState(isPreview);
   const [inputKey, setInputKey] = useState<number>(Date.now());
 
-  const mapExtensionToFileType = (fileName: string): 'image' | 'pdf' | 'txt' | 'xlsx' => {
+  const mapExtensionToFileType = (
+    fileName: string
+  ): 'image' | 'pdf' | 'txt' | 'xlsx' => {
     const ext = fileName.split('.').pop()?.toLowerCase() || '';
     if (['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext)) return 'image';
     if (ext === 'pdf') return 'pdf';
@@ -70,7 +73,7 @@ export function FileUploadField({
       control={control}
       name={name}
       render={({ field: { onChange, ...field } }) => (
-        <FormItem className="col-span-2 w-full">
+        <FormItem className='col-span-2 w-full'>
           <div
             className={cn(
               `relative bg-gray-50 ${className}`,
@@ -84,12 +87,15 @@ export function FileUploadField({
                 currentSingle ? 'invisible h-0' : ''
               )}
             >
-              <div className="max-w-78">
+              <div className='max-w-78'>
                 <p className={`text-base font-semibold ${classNameUpload}`}>
                   Click to upload or drag and drop
                 </p>
-                <p className={`text-xs font-normal text-neutral-500 ${classNameFileSizeText}`}>
-                  {fileName || `Supported file types are ${accept} (Max ${maxSize}MB)`}
+                <p
+                  className={`text-xs font-normal text-neutral-500 ${classNameFileSizeText}`}
+                >
+                  {fileName ||
+                    `Supported file types are ${accept} (Max ${maxSize}MB)`}
                 </p>
               </div>
             </label>
@@ -98,8 +104,8 @@ export function FileUploadField({
               <input
                 id={name}
                 key={inputKey}
-                type="file"
-                className="hidden"
+                type='file'
+                className='hidden'
                 accept={accept}
                 name={field.name}
                 onBlur={field.onBlur}
@@ -120,10 +126,10 @@ export function FileUploadField({
               {currentFileType === 'image' ? (
                 <Image
                   src={currentSingle}
-                  alt="Preview"
+                  alt='Preview'
                   width={80}
                   height={80}
-                  className="h-full w-full rounded-lg object-cover"
+                  className='h-full w-full rounded-lg object-cover'
                 />
               ) : (
                 <FileCard type={currentFileType} name={fileName} />
@@ -131,9 +137,9 @@ export function FileUploadField({
 
               {!disabled && (
                 <Button
-                  type="button"
+                  type='button'
                   onClick={() => removeFile(onChange)}
-                  variant="ghost"
+                  variant='ghost'
                   className={
                     currentFileType === 'image'
                       ? 'text-destructive-foreground absolute top-0 -right-2 cursor-pointer rounded-full bg-gray-100 p-1'
