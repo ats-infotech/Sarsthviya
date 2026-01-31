@@ -140,5 +140,8 @@ export const IconsString = {
   timericon: 'ph:timer',
   triangleAlert: 'eva:alert-triangle-outline',
   sent: 'entypo:paper-plane',
-  polygon: 'akar-icons:triangle-fill'
+  polygon: 'akar-icons:triangle-fill',
+  heartOutlined: 'mdi:heart-outline',
+  fileView: 'hugeicons:file-view',
+  deliveryVan: 'material-symbols:delivery-truck-speed-outline-rounded'
 };

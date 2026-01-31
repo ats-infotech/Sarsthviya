@@ -57,6 +57,73 @@
   --sidebar-ring: var(--accent);
 }
 
+.btn-slide-left {
+  overflow: hidden;
+}
+
+.btn-slide-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: theme('colors.accent');
+  transform: translateX(-100%);
+  transition: transform 300ms ease;
+  z-index: 0;
+}
+
+.btn-slide-left:hover::before {
+  transform: translateX(0);
+}
+
+.btn-slide-left:not(:hover)::before {
+  transform: translateX(100%);
+}
+
+.btn-slide-left > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-slide-right {
+  overflow: hidden;
+}
+
+.btn-slide-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: theme('colors.accent');
+  transform: translateX(100%);
+  transition: transform 300ms ease;
+  z-index: 0;
+}
+
+.btn-slide-right:hover::before {
+  transform: translateX(0);
+}
+
+.btn-slide-right:not(:hover)::before {
+  transform: translateX(-100%);
+}
+
+.btn-slide-right > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-slide-right.view-more {
+  position: relative;
+}
+
+.btn-slide-right.view-more::before {
+  background-color: theme('colors.text-primary');
+}
+
+.btn-slide-right span {
+  position: relative;
+  z-index: 2;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

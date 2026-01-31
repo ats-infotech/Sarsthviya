@@ -5,6 +5,8 @@ import { Toaster } from '@/components/ui/sonner';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import HomeMobileSidebar from '@/components/layout/home-mobile-sidebar';
+import { ProductSidebarProvider } from '@/context/product-sidebar-context';
+import ProductSidebar from '@/components/layout/product-sidebar';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -26,11 +28,14 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${openSans.variable} antialiased`}>
         <NuqsAdapter>
-          <Toaster />
-          <SidebarProvider defaultOpen={false}>
-            <HomeMobileSidebar />
-            <SidebarInset>{children}</SidebarInset>
-          </SidebarProvider>
+          <ProductSidebarProvider>
+            <Toaster />
+            <SidebarProvider defaultOpen={false}>
+              <HomeMobileSidebar />
+              <SidebarInset>{children}</SidebarInset>
+            </SidebarProvider>
+            <ProductSidebar />
+          </ProductSidebarProvider>
         </NuqsAdapter>
       </body>
     </html>
