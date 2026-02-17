@@ -1,4 +1,4 @@
-import { websiteText } from "@/constants/text-constants";
+import { websiteText } from '@/constants/text-constants';
 
 export default function ItemReturnSelection() {
   return (
@@ -7,7 +7,9 @@ export default function ItemReturnSelection() {
         {websiteText?.returnorexchange}
       </h2>
       <p className='border-text-secondary/30 bg-card-secondary text-text-secondary inline-block rounded-full border p-3 text-lg font-semibold'>
-        <span className='text-accent! text-xl font-bold'>{websiteText?.order} #12345gfb</span>{' '}
+        <span className='text-accent! text-xl font-bold'>
+          {websiteText?.order} #12345gfb
+        </span>{' '}
         14 Days left to return this Order
       </p>
 
