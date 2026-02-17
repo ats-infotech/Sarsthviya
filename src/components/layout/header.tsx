@@ -10,13 +10,17 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useQueryState } from 'nuqs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormInput } from '../form-input';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { IconsString } from '../icons';
 import { useSidebar } from '../ui/sidebar';
+import { useCartSidebar } from '@/context/cart-sidebar-context';
+import { useRouter } from 'next/navigation';
+import { useWishlist } from '@/hooks/use-wishlist';
+import { useCart } from '@/hooks/use-cart';
 
 type FilterValues = {
   search: string;
@@ -24,12 +28,30 @@ type FilterValues = {
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useQueryState('search');
+  const { items: wishlistItems } = useWishlist();
+  const { totalItems: cartItems } = useCart();
+  const { openCartSidebar } = useCartSidebar();
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  const [showWishlistBadge, setShowWishlistBadge] = useState(false);
+  const [showCartBadge, setShowCartBadge] = useState(false);
 
   const form = useForm<FilterValues>({
     defaultValues: {
       search: searchQuery ?? ''
     }
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      setShowWishlistBadge(wishlistItems?.length > 0);
+      setShowCartBadge(cartItems > 0);
+    }
+  }, [isMounted, wishlistItems, cartItems]);
 
   useEffect(() => {
     const subscription = form.watch((values) => {
@@ -160,6 +182,8 @@ export default function Header() {
             alt='logo'
             height={56}
             width={100}
+            className='cursor-pointer'
+            onClick={() => router.push('/')}
           />
         </div>
         <div className='flex items-center gap-5'>
@@ -169,6 +193,8 @@ export default function Header() {
               alt='logo'
               height={56}
               width={100}
+              className='cursor-pointer'
+              onClick={() => router.push('/')}
             />
           </div>
           <FormProvider {...form}>
@@ -186,9 +212,29 @@ export default function Header() {
               </div>
             </form>
           </FormProvider>
-          <Heart className='text-text-senary h-4.5 w-4.5' />
-          <ShoppingCart className='text-text-senary h-4.5 w-4.5' />
-          <User className='text-text-senary hidden h-4.5 w-4.5 md:block' />
+          <div
+            className='relative cursor-pointer'
+            onClick={() => router.push('/wishlist')}
+          >
+            <Heart className='text-text-senary h-5 w-5' />
+            {showWishlistBadge && (
+              <div className='bg-text-quinary absolute -top-2 -right-2 z-10 flex h-4.5 w-4.5 items-center justify-center rounded-full text-[10px] font-bold text-white'>
+                {wishlistItems?.length > 9 ? '9+' : wishlistItems?.length}
+              </div>
+            )}
+          </div>
+          <div className='relative cursor-pointer' onClick={openCartSidebar}>
+            <ShoppingCart className='text-text-senary h-5 w-5' />
+            {showCartBadge && (
+              <div className='bg-text-quinary absolute -top-2 -right-2 z-10 flex h-4.5 w-4.5 items-center justify-center rounded-full text-[10px] font-bold text-white'>
+                {cartItems > 9 ? '9+' : cartItems}
+              </div>
+            )}
+          </div>
+          <User
+            onClick={() => router.push('/profile')}
+            className='text-text-senary hidden h-5 w-5 cursor-pointer md:block'
+          />
         </div>
       </header>
     </>

@@ -11,7 +11,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -25,13 +24,10 @@ import { navItems } from '@/constants/data';
 import { isNavItemActive } from '@/lib/utils';
 import { IconChevronRight, IconPhotoUp } from '@tabler/icons-react';
 import { LogOut } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
-// import LogoImage from '../../../public/light-logo.svg';
-import MiniLogoImage from '../../../public/light-mini-logo.svg';
 import { NavItem } from '@/types';
 import { Icon as IconifyIcon } from '@iconify/react';
 import { useMediaQuery } from '@/hooks/use-media-query';
@@ -56,7 +52,6 @@ function renderNavIcon(icon: NavItem['icon']) {
 export default function AppSidebar() {
   const pathname = usePathname();
   const { isOpen } = useMediaQuery();
-  const { open: sidebarOpen } = useSidebar();
 
   React.useEffect(() => {
     // Side effects based on sidebar state changes

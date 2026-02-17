@@ -12,7 +12,7 @@ import { ChevronRight } from 'lucide-react';
 export default function ViralCollections() {
   const width = useWindowWidth();
   return (
-    <div className='pb-25'>
+    <div>
       <HomePageTitle
         title={viralCollectionSection?.title}
         width={width < 640 ? 150 : width < 1024 ? 194 : 280}

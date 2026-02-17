@@ -8,7 +8,7 @@ export default function SeasonalOffer() {
   const width = useWindowWidth();
 
   return (
-    <div className='pb-25'>
+    <div>
       <HomePageTitle
         title={seasonalOfferSection?.title}
         width={262}

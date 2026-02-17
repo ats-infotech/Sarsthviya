@@ -25,7 +25,7 @@ export default function EleganceSection() {
   }, [current]);
 
   return (
-    <div className='relative mx-auto my-30 h-215.75 w-full overflow-hidden'>
+    <div className='relative mx-auto h-215.75 w-full overflow-hidden'>
       {/* Slides */}
       <div
         className='flex transition-transform duration-700 ease-in-out'

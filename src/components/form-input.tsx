@@ -61,6 +61,7 @@ type FormInputProps<T extends FieldValues> = {
   disabled?: boolean;
   className?: string;
   inputClassName?: string;
+  labelClassName?: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
   onWheel?: (e: React.WheelEvent<HTMLInputElement>) => void;
@@ -81,6 +82,7 @@ export function FormInput<T extends FieldValues>({
   disabled,
   className,
   inputClassName,
+  labelClassName,
   prefix,
   suffix,
   onWheel,
@@ -101,7 +103,12 @@ export function FormInput<T extends FieldValues>({
       render={({ field }: { field: ControllerRenderProps<T, Path<T>> }) => (
         <FormItem className={cn('flex flex-col', className)}>
           {label && (
-            <FormLabel className='text-tiny text-primary-950 gap-0.5 font-normal'>
+            <FormLabel
+              className={cn(
+                'text-tiny text-primary-950 gap-0.5 font-normal',
+                labelClassName
+              )}
+            >
               {label}
               {required && <span className='text-red-500'>*</span>}
             </FormLabel>
@@ -493,6 +500,7 @@ type FormTextareaProps<T extends FieldValues> = {
   disabled?: boolean;
   className?: string;
   inputClassName?: string;
+  labelClassName?: string;
 };
 
 export function FormTextarea<T extends FieldValues>({
@@ -503,7 +511,8 @@ export function FormTextarea<T extends FieldValues>({
   required,
   disabled = false,
   className,
-  inputClassName
+  inputClassName,
+  labelClassName
 }: FormTextareaProps<T>) {
   return (
     <FormField
@@ -511,7 +520,7 @@ export function FormTextarea<T extends FieldValues>({
       name={name}
       render={({ field }) => (
         <FormItem className={className}>
-          <FormLabel>
+          <FormLabel className={labelClassName}>
             {label}
             {required && <span className='ml-0.5 text-red-500'>*</span>}
           </FormLabel>

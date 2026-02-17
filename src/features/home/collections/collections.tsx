@@ -12,7 +12,7 @@ export default function Collections() {
   const width = useWindowWidth();
 
   return (
-    <div className='bg-background-secondary pb-25'>
+    <div className='bg-background-secondary'>
       <HomePageTitle
         title={collectionsSection?.title}
         width={width < 640 ? 105 : width < 1024 ? 140 : 188}

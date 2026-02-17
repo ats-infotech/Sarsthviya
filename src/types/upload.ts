@@ -45,4 +45,5 @@ export type FileUploadFieldProps<T extends FieldValues = any> = {
   fileName?: string;
   expiryDate?: Date | null;
   uploadDialogTriggerBtn?: React.ReactNode;
+  type?: string;
 };

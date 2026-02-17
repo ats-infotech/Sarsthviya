@@ -21,6 +21,7 @@
   --accent-quaternary: #c48c5c;
   --card-primary: #f6d8b4;
   --card-secondary: #f8f8f8;
+  --border-primary: #d9d9d9;
   --white: #ffffff;
   --black: #000000;
   --sidebar: var(--white);
@@ -49,6 +50,7 @@
   --card-secondary: #f8f8f8;
   --white: #ffffff;
   --black: #000000;
+  --border-primary: #d9d9d9;
   --sidebar: var(--white);
   --sidebar-foreground: var(--accent);
   --sidebar-accent: var(--accent-secondary);
@@ -148,6 +150,7 @@
   --color-card-secondary: var(--card-secondary);
   --color-white: var(--white);
   --color-black: var(--black);
+  --color-border-primary: var(--border-primary);
 }
 
 @layer base {

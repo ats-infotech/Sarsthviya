@@ -11,7 +11,7 @@ export default function NewArrivalSection() {
     width < 710 ? 1 : width < 1024 ? 2 : width < 1301 ? 3 : 4;
 
   return (
-    <div className='bg-background-secondary mt-25 flex flex-col items-center pb-25'>
+    <div className='bg-background-secondary flex flex-col items-center pt-10'>
       <HomePageTitle
         title={newArrivalSection?.title}
         width={width < 640 ? 120 : width < 1024 ? 157 : 219}

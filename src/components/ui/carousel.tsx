@@ -26,8 +26,6 @@ export default function Carousel({
   options = {},
   showArrows = true,
   showDots = true,
-  arrowLeftClassName = '',
-  arrowRightClassName = '',
   dotClassName = '',
   slidesToShow = 4,
   slideWidth = 280,

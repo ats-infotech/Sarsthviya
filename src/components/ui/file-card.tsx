@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import FileSvg from '../../../public/assets/pdf-icon.svg';
+// import FileSvg from '../../../public/assets/pdf-icon.svg';
 import Image from 'next/image';
 
 type FileCardProps = {
@@ -12,13 +12,13 @@ export default function FileCard({ name, type, date }: FileCardProps) {
   const getIcon = () => {
     switch (type) {
       case 'pdf':
-        return <Image src={FileSvg} className='h-10 w-10' alt='file' />;
+        return <Image src={'FileSvg'} className='h-10 w-10' alt='file' />;
       case 'txt':
-        return <Image src={FileSvg} className='h-10 w-10' alt='file' />;
+        return <Image src={'FileSvg'} className='h-10 w-10' alt='file' />;
       case 'xlsx':
-        return <Image src={FileSvg} className='h-10 w-10' alt='file' />;
+        return <Image src={'FileSvg'} className='h-10 w-10' alt='file' />;
       default:
-        return <Image src={FileSvg} className='h-10 w-10' alt='file' />;
+        return <Image src={'FileSvg'} className='h-10 w-10' alt='file' />;
     }
   };
 

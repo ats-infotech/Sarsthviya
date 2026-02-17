@@ -143,5 +143,10 @@ export const IconsString = {
   polygon: 'akar-icons:triangle-fill',
   heartOutlined: 'mdi:heart-outline',
   fileView: 'hugeicons:file-view',
-  deliveryVan: 'material-symbols:delivery-truck-speed-outline-rounded'
+  deliveryVan: 'material-symbols:delivery-truck-speed-outline-rounded',
+  heartFilled: 'mdi:heart',
+  discountTag: 'hugeicons:discount-tag-02',
+  uploadLinear: 'solar:upload-linear',
+  setting: 'icon-park-outline:setting-two',
+  chatMessages: 'mynaui:chat-messages'
 };

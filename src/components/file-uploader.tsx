@@ -6,6 +6,8 @@ import { Button } from './ui/button';
 import FileCard from './ui/file-card';
 import { FormField, FormItem, FormMessage } from './ui/form';
 import { FileUploadFieldProps } from '@/types/upload';
+import { Icon } from '@iconify/react';
+import { IconsString } from './icons';
 
 export function FileUploadField({
   control,
@@ -18,7 +20,8 @@ export function FileUploadField({
   classNameFileSizeText,
   disabled,
   isPreview = true,
-  fileName: propFileName
+  fileName: propFileName,
+  type
 }: FileUploadFieldProps) {
   const [fileName, setFileName] = useState(propFileName || '');
   const [fileUrl, setFileUrl] = useState<string | undefined>(undefined);
@@ -87,17 +90,26 @@ export function FileUploadField({
                 currentSingle ? 'invisible h-0' : ''
               )}
             >
-              <div className='max-w-78'>
-                <p className={`text-base font-semibold ${classNameUpload}`}>
-                  Click to upload or drag and drop
-                </p>
-                <p
-                  className={`text-xs font-normal text-neutral-500 ${classNameFileSizeText}`}
-                >
-                  {fileName ||
-                    `Supported file types are ${accept} (Max ${maxSize}MB)`}
-                </p>
-              </div>
+              {type === 'review' ? (
+                <div>
+                  <Icon
+                    icon={IconsString?.uploadLinear}
+                    className='text-text-secondary h-12 w-12'
+                  />
+                </div>
+              ) : (
+                <div className='max-w-78'>
+                  <p className={`text-base font-semibold ${classNameUpload}`}>
+                    Click to upload or drag and drop
+                  </p>
+                  <p
+                    className={`text-xs font-normal text-neutral-500 ${classNameFileSizeText}`}
+                  >
+                    {fileName ||
+                      `Supported file types are ${accept} (Max ${maxSize}MB)`}
+                  </p>
+                </div>
+              )}
             </label>
 
             {!disabled && (

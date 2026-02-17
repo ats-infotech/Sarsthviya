@@ -3,7 +3,7 @@ import { websiteText } from '@/constants/text-constants';
 
 export default function DiwaliDhamakaSection() {
   return (
-    <div className='my-10 md:my-20'>
+    <div>
       <div className='bg-background-secondary relative h-150 w-full overflow-hidden sm:h-200 md:h-262.5'>
         {/* Background Base Image */}
         <Image
@@ -16,39 +16,57 @@ export default function DiwaliDhamakaSection() {
         <div className='from-background-secondary/90 to-background-secondary/90 absolute inset-0 bg-linear-to-r via-transparent' />
 
         {/* Confetti */}
-        <div className='absolute top-0 z-10 flex w-full justify-around opacity-70'>
-          <Image
-            src={'/assets/diwali-dhamaka/confettiLight.gif'}
-            className='h-50 w-auto md:h-112.5'
-            alt='Confetti'
-            fill
-          />
-          <Image
-            src={'/assets/diwali-dhamaka/confettiLight.gif'}
-            className='h-50 w-auto md:h-112.5'
-            alt='Confetti'
-            fill
-          />
-          <Image
-            src={'/assets/diwali-dhamaka/confettiLight.gif'}
-            className='h-50 w-auto md:h-112.5'
-            alt='Confetti'
-            fill
-          />
+        <div className='flex h-120! w-full'>
+          <div className='h-full w-[25%]!'>
+            <Image
+              src={'/assets/images/diwali-dhamaka/confettiLight.gif'}
+              className='relative! h-120 w-full!'
+              alt='Confetti'
+              unoptimized
+              fill
+            />
+          </div>
+          <div className='h-full w-[25%]!'>
+            <Image
+              src={'/assets/images/diwali-dhamaka/confettiLight.gif'}
+              className='relative! h-120 w-full!'
+              alt='Confetti'
+              unoptimized
+              fill
+            />
+          </div>
+          <div className='h-full w-[25%]!'>
+            <Image
+              src={'/assets/images/diwali-dhamaka/confettiLight.gif'}
+              className='relative! h-120 w-full!'
+              alt='Confetti'
+              unoptimized
+              fill
+            />
+          </div>
+          <div className='h-full w-[25%]!'>
+            <Image
+              src={'/assets/images/diwali-dhamaka/confettiLight.gif'}
+              className='relative! h-120 w-full!'
+              alt='Confetti'
+              unoptimized
+              fill
+            />
+          </div>
         </div>
 
         {/* fireCrackers Animation */}
-        <div className='absolute top-20 flex w-full justify-evenly gap-10 px-5 md:top-30 md:gap-50 md:px-20'>
+        <div className='absolute top-30 flex h-50! w-full justify-evenly!'>
           <Image
-            src={'/assets/gif/fireCrackers.gif'}
+            src={'/assets/images/diwali-dhamaka/fireCrackers.gif'}
             alt='Fire Crackers'
-            className='w-37.5 md:w-100'
+            className='relative! h-60! w-[40%]!'
             fill
           />
           <Image
-            src={'/assets/gif/fireCrackers.gif'}
+            src={'/assets/images/diwali-dhamaka/fireCrackers.gif'}
             alt='Fire Crackers'
-            className='w-37.5 md:w-100'
+            className='relative! h-60! w-[40%]!'
             fill
           />
         </div>
@@ -70,6 +88,7 @@ export default function DiwaliDhamakaSection() {
             alt='girl-4'
             width={1000}
             height={1000}
+            unoptimized
             className='-mr-10 h-65 w-auto object-contain opacity-80 transition-transform sm:h-112.5 md:-mr-16 md:h-145'
           />
 
@@ -78,6 +97,7 @@ export default function DiwaliDhamakaSection() {
             alt='girl-2'
             width={1000}
             height={1000}
+            unoptimized
             className='z-10 -mr-12 h-77.5 w-auto object-contain opacity-95 sm:h-125 md:-mr-25 md:h-162.5'
           />
 
@@ -86,6 +106,7 @@ export default function DiwaliDhamakaSection() {
             alt='girl-1'
             width={1000}
             height={1000}
+            unoptimized
             className='z-40 h-85 w-auto scale-110 object-contain drop-shadow-2xl sm:h-137.5 md:h-175 md:scale-100'
           />
 
@@ -94,6 +115,7 @@ export default function DiwaliDhamakaSection() {
             alt='girl-3'
             width={1000}
             height={1000}
+            unoptimized
             className='z-10 -ml-12 h-77.5 w-auto object-contain opacity-95 sm:h-125 md:-ml-20 md:h-162.5'
           />
 
@@ -101,6 +123,7 @@ export default function DiwaliDhamakaSection() {
             src={'/assets/images/diwali-dhamaka/5.png'}
             width={1000}
             height={1000}
+            unoptimized
             alt='girl-5'
             className='-ml-10 h-65 w-auto object-contain opacity-80 sm:h-112.5 md:-ml-16 md:h-145'
           />

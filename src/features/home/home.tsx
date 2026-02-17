@@ -9,7 +9,7 @@ import ViralCollections from './viral-collection/viral-collection';
 
 export default function HomePage() {
   return (
-    <div className='bg-background-secondary'>
+    <div className='bg-background-secondary flex flex-col gap-25 pb-25 xl:pb-0'>
       <HeroSection />
       <NewArrivalSection />
       <DiwaliDhamakaSection />

@@ -1,23 +1,55 @@
 'use client';
 
-import { useState, useEffect } from 'react'; // Add useEffect import
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { X, Heart, Ruler, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { websiteText } from '@/constants/text-constants';
 import { useProductSidebar } from '@/context/product-sidebar-context';
 import { Icon } from '@iconify/react';
-import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import { IconsString } from '../icons';
 import Carousel from '../ui/carousel';
+import { useChartSidebar } from '@/context/sizechart-sidebar-context';
+import { useCart } from '@/hooks/use-cart';
+import { useWishlist } from '@/hooks/use-wishlist';
+import { useCartSidebar } from '@/context/cart-sidebar-context';
 
 export default function ProductSidebar() {
   const { isOpen, selectedProduct, closeProductSidebar } = useProductSidebar();
-
-  // Move useState hooks to the top
+  const { openChartSidebar } = useChartSidebar();
+  const { openCartSidebar } = useCartSidebar();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const isProductInWishlist = selectedProduct
+    ? isInWishlist(selectedProduct.id)
+    : false;
+
+  useEffect(() => {
+    if (isOpen && selectedProduct) {
+      setIsVisible(true);
+      setQuantity(1);
+      setIsAnimating(false);
+      const animationTimer = setTimeout(() => {
+        setIsAnimating(true);
+      }, 10);
+
+      return () => clearTimeout(animationTimer);
+    } else if (!isOpen && isVisible) {
+      setIsAnimating(false);
+      const hideTimer = setTimeout(() => {
+        setIsVisible(false);
+        document.body.style.overflow = 'auto';
+      }, 400);
+
+      return () => clearTimeout(hideTimer);
+    }
+  }, [isOpen, selectedProduct]);
 
   useEffect(() => {
     if (selectedProduct?.size && selectedProduct?.size?.length > 0) {
@@ -25,25 +57,52 @@ export default function ProductSidebar() {
     }
   }, [selectedProduct]);
 
-  if (!selectedProduct || !isOpen) return null;
-
   const handleIncrement = () => setQuantity((prev) => prev + 1);
   const handleDecrement = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const handleAddToCart = () => {
+    if (selectedProduct && selectedSize && quantity > 0) {
+      const cartItem = {
+        id: selectedProduct.id,
+        product_name: selectedProduct.product_name,
+        image: selectedProduct.image,
+        description: selectedProduct.description,
+        original_price: selectedProduct.original_price,
+        discounted_price: selectedProduct.discounted_price,
+        discount_percentage: selectedProduct.discount_percentage,
+        cashback_amount: selectedProduct.cashback_amount,
+        size: selectedSize,
+        quantity: quantity
+      };
+      addToCart(cartItem);
+      openCartSidebar();
+    }
+  };
+
+  const handleWishlistToggle = () => {
+    if (!selectedProduct) return;
+    if (isProductInWishlist) {
+      removeFromWishlist(selectedProduct.id);
+    } else {
+      addToWishlist(selectedProduct);
+    }
+  };
+
+  if (!selectedProduct || !isVisible) return null;
 
   return (
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
-          }`}
+        className={`fixed inset-0 z-40 bg-black/50 transition-all duration-400 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
         onClick={closeProductSidebar}
       />
 
       {/* Sidebar */}
       <div
-        className={`bg-background-secondary fixed top-0 right-0 z-50 h-full w-full max-w-125 rounded-l-lg shadow-2xl transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        ref={sidebarRef}
+        className={`bg-background-secondary fixed top-0 right-0 z-50 h-full w-full max-w-125 rounded-l-lg shadow-2xl transition-transform duration-400 ease-out ${isAnimating ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className='sticky top-0 z-10'>
           <div className='flex items-center justify-between px-6 py-4'>
@@ -53,7 +112,7 @@ export default function ProductSidebar() {
             <Button
               variant='ghost'
               size='icon'
-              className='h-8 w-8 rounded-full hover:bg-gray-100'
+              className='hover:bg-background-secondary h-8 w-8 rounded-full'
               onClick={closeProductSidebar}
             >
               <X className='h-5.5 w-5.5' />
@@ -63,7 +122,7 @@ export default function ProductSidebar() {
         </div>
 
         <div className='max-h-[calc(100vh-64px)] overflow-y-scroll px-16.5 pb-12.5'>
-          <div className='mt-7.5 relative'>
+          <div className='relative mt-7.5'>
             <Image
               src={selectedProduct?.image?.[selectedImageIndex]}
               alt='image'
@@ -71,11 +130,21 @@ export default function ProductSidebar() {
               width={280}
               className='mx-auto rounded-2xl'
             />
-            <div className='bg-accent absolute top-3.5 right-14.5 z-10 flex h-6.5 w-6.5 items-center justify-center rounded-full'>
-              <Icon
-                icon={IconsString?.heartOutlined}
-                className='text-text-tertiary h-3 w-3'
-              />
+            <div
+              onClick={handleWishlistToggle}
+              className={`absolute top-3.5 right-14.5 z-10 flex h-6.5 w-6.5 cursor-pointer items-center justify-center rounded-full ${isProductInWishlist ? 'bg-white' : 'bg-accent'}`}
+            >
+              {isProductInWishlist ? (
+                <Icon
+                  icon={IconsString?.heartFilled}
+                  className='text-text-quinary'
+                />
+              ) : (
+                <Icon
+                  icon={IconsString?.heartOutlined}
+                  className='text-text-tertiary h-3 w-3'
+                />
+              )}
             </div>
           </div>
           <div className='my-5'>
@@ -86,22 +155,20 @@ export default function ProductSidebar() {
               showDots={false}
               showArrows={true}
             >
-              {
-                selectedProduct?.image?.map((items, i) => {
-                  return (
-                    <div key={i}>
-                      <Image
-                        width={84}
-                        height={96}
-                        src={items}
-                        alt='product'
-                        className='rounded-[10px] cursor-pointer'
-                        onClick={() => setSelectedImageIndex(i)}
-                      />
-                    </div>
-                  )
-                })
-              }
+              {selectedProduct?.image?.map((items, i) => {
+                return (
+                  <div key={i}>
+                    <Image
+                      width={84}
+                      height={96}
+                      src={items}
+                      alt='product'
+                      className='cursor-pointer rounded-[10px]'
+                      onClick={() => setSelectedImageIndex(i)}
+                    />
+                  </div>
+                );
+              })}
             </Carousel>
           </div>
           {selectedProduct?.product_name && (
@@ -133,7 +200,10 @@ export default function ProductSidebar() {
               {websiteText?.size} :{' '}
               <span className='uppercase'>{selectedSize}</span>
             </p>
-            <Button className='text-text-secondary text-xs font-medium shadow-none!'>
+            <Button
+              onClick={openChartSidebar}
+              className='text-text-secondary text-xs font-medium shadow-none!'
+            >
               <Ruler />
               {websiteText?.sizeChart}
             </Button>
@@ -172,14 +242,29 @@ export default function ProductSidebar() {
             </div>
           </div>
 
-          <Button className='bg-accent text-text-tertiary flex h-12.5 w-full gap-2.5 text-base font-semibold'>
+          <Button
+            onClick={handleAddToCart}
+            className='bg-accent text-text-tertiary flex h-12.5 w-full gap-2.5 text-base font-semibold'
+          >
             <ShoppingCart className='h-5.5 w-5.5' />
             {websiteText?.addToCart}
           </Button>
 
-          <Button className='border-accent text-text-secondary mt-4 mb-7.5 flex h-12.5 w-full gap-2.5 border text-base font-semibold'>
-            <Heart />
-            {websiteText?.addToWishlist}
+          <Button
+            onClick={handleWishlistToggle}
+            className='border-accent text-text-secondary mt-4 mb-7.5 flex h-12.5 w-full gap-2.5 border text-base font-semibold'
+          >
+            {isProductInWishlist ? (
+              <Icon
+                icon={IconsString?.heartFilled}
+                className='text-text-quinary'
+              />
+            ) : (
+              <Heart />
+            )}
+            {isProductInWishlist
+              ? websiteText?.removeFromWishlist
+              : websiteText?.addToWishlist}
           </Button>
 
           <div className='border-accent-quaternary/20 rounded-sm border p-5 shadow-[0px_0px_15px_0px_#C48C5C26]'>
