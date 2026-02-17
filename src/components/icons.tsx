@@ -148,5 +148,7 @@ export const IconsString = {
   discountTag: 'hugeicons:discount-tag-02',
   uploadLinear: 'solar:upload-linear',
   setting: 'icon-park-outline:setting-two',
-  chatMessages: 'mynaui:chat-messages'
+  chatMessages: 'mynaui:chat-messages',
+  grid12: 'icons8:grid',
+  dropDownFilter: 'rivet-icons:filter'
 };

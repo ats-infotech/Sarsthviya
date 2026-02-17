@@ -1,12 +1,12 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
-import Registration from '@/features/registration/registration';
+import ReturnOrExchange from '@/features/returnorexchange/returnorexchange';
 
-export default function RegistrationPage() {
+export default function ItemReturnSelectionPage() {
   return (
     <>
       <Header />
-      <Registration />
+      <ReturnOrExchange />
       <Footer />
     </>
   );

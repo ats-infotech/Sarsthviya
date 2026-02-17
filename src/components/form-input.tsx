@@ -205,6 +205,8 @@ type FormSelectProps<T extends FieldValues> = {
   required?: boolean;
   className?: string;
   triggerClassName?: string;
+  dropDownClassName?: string;
+  selectItemsClassName?: string;
   onValueChange?: (value: string | number) => void;
 };
 
@@ -218,6 +220,8 @@ export function FormSelect<T extends FieldValues>({
   required,
   className,
   triggerClassName,
+  dropDownClassName,
+  selectItemsClassName,
   onValueChange
 }: FormSelectProps<T>) {
   return (
@@ -243,9 +247,10 @@ export function FormSelect<T extends FieldValues>({
               <SelectTrigger className={triggerClassName || 'w-full'}>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className={dropDownClassName || ''}>
                 {options.map((option) => (
                   <SelectItem
+                    className={selectItemsClassName}
                     key={option.value}
                     value={option.value}
                     disabled={option.disable}

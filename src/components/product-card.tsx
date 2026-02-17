@@ -13,10 +13,16 @@ import { useWishlist } from '@/hooks/use-wishlist';
 import Link from 'next/link';
 
 type ProductCardProps = {
+  className?: string;
   product: Product;
+  slideWidth?: number;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  className,
+  slideWidth
+}: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { openProductSidebar } = useProductSidebar();
   const { addToWishlist, removeFromWishlist, isInWishlist, isLoading } =

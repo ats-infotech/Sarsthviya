@@ -19,6 +19,7 @@
   --accent-secondary: #fbfbfb;
   --accent-tertiary: #dadada;
   --accent-quaternary: #c48c5c;
+  --accent-quinary: #a4a4a4;
   --card-primary: #f6d8b4;
   --card-secondary: #f8f8f8;
   --border-primary: #d9d9d9;
@@ -46,6 +47,7 @@
   --accent-secondary: #fbfbfb;
   --accent-tertiary: #dadada;
   --accent-quaternary: #c48c5c;
+  --accent-quinary: #a4a4a4;
   --card-primary: #f6d8b4;
   --card-secondary: #f8f8f8;
   --white: #ffffff;
@@ -146,6 +148,7 @@
   --color-accent-secondary: var(--accent-secondary);
   --color-accent-tertiary: var(--accent-tertiary);
   --color-accent-quaternary: var(--accent-quaternary);
+  --color-accent-quinary: var(--accent-quinary);
   --color-card-primary: var(--card-primary);
   --color-card-secondary: var(--card-secondary);
   --color-white: var(--white);
@@ -215,4 +218,19 @@
 .pac-container {
   z-index: 999999 !important;
   pointer-events: auto !important;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-in-out;
 }

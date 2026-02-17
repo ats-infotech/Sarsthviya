@@ -1,12 +1,12 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
-import Registration from '@/features/registration/registration';
+import ProductListPage from '@/features/productlist/productlistpage';
 
-export default function RegistrationPage() {
+export default function ProductList() {
   return (
     <>
       <Header />
-      <Registration />
+      <ProductListPage />
       <Footer />
     </>
   );

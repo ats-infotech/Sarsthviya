@@ -15,8 +15,10 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import { Icon } from '@iconify/react';
 import { IconsString } from '@/components/icons';
 
-interface DataTableColumnHeaderProps<TData, TValue>
-  extends React.ComponentProps<typeof DropdownMenuTrigger> {
+interface DataTableColumnHeaderProps<
+  TData,
+  TValue
+> extends React.ComponentProps<typeof DropdownMenuTrigger> {
   column: Column<TData, TValue>;
   title: string;
   className: string;
